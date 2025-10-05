@@ -22,7 +22,22 @@
   header p {font-size:1.2rem; margin-bottom:30px; max-width:800px; margin-left:auto; margin-right:auto;}
   .store-links img {height:60px; margin:10px; transition: transform 0.3s;}
   .store-links img:hover {transform: scale(1.05);}
-  select#language-select {position:absolute; top:20px; right:20px; padding:5px; font-size:1rem;}
+  
+  /* Улучшенный селектор языка */
+  select#language-select {
+    position:absolute; 
+    top:20px; 
+    right:20px; 
+    padding:8px 12px; 
+    font-size:1rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background: white;
+    color: #333;
+    cursor: pointer;
+    z-index: 100;
+  }
+  
   section {padding:40px 20px; max-width:900px; margin:auto; text-align:left;}
   section h2 {text-align:center; margin-bottom:20px;}
   ul {list-style:none; padding:0;}
@@ -97,6 +112,7 @@
 </head>
 <body>
 
+<!-- Селектор языка - теперь с улучшенной видимостью -->
 <select id="language-select">
   <option value="ru">🇷🇺 Русский</option>
   <option value="en">🇬🇧 English</option>
