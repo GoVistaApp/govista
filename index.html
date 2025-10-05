@@ -1,1 +1,150 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GoVista</title>
+<style>
+  body {font-family: sans-serif; margin:0; padding:0; background:#f9f9f9; text-align:center;}
+  header {background: linear-gradient(135deg,#4f46e5,#3b82f6); color:white; padding:60px 20px; position: relative;}
+  header h1 {font-size:2.5rem; margin-bottom:10px;}
+  header p {font-size:1.2rem; margin-bottom:30px; max-width:800px; margin-left:auto; margin-right:auto;}
+  .store-links img {height:60px; margin:10px; transition: transform 0.3s;}
+  .store-links img:hover {transform: scale(1.05);}
+  select#language-select {position:absolute; top:20px; right:20px; padding:5px; font-size:1rem;}
+  section {padding:40px 20px; max-width:900px; margin:auto; text-align:left;}
+  section h2 {text-align:center; margin-bottom:20px;}
+  ul {list-style:none; padding:0;}
+  li {background:white; margin:10px 0; padding:15px 20px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.1); font-size:1.1rem;}
+  .screenshots {display:flex; flex-wrap:wrap; justify-content:center; gap:15px; margin-top:20px;}
+  .screenshots img {width:200px; border-radius:12px; box-shadow:0 2px 6px rgba(0,0,0,0.1); transition: transform 0.3s;}
+  .screenshots img:hover {transform: scale(1.05);}
+  footer {background:#eee; padding:20px; font-size:0.9rem; text-align:center; margin-top:20px;}
+</style>
+</head>
+<body>
+
+<select id="language-select">
+  <option value="ru">🇷🇺 Русский</option>
+  <option value="en">🇬🇧 English</option>
+</select>
+
+<header>
+  <h1 id="title">GoVista</h1>
+  <p id="description">Ваш умный путеводитель, который поможет вам открыть для себя удивительные места и спланировать незабываемые маршруты...</p>
+  <div class="store-links">
+    <a href="https://play.google.com/store/apps/details?id=com.govista.app" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play">
+    </a>
+    <a href="#"><img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="App Store"></a>
+  </div>
+</header>
+
+<section>
+  <h2 id="features-title">Что вы можете делать с GoVista</h2>
+  <ul id="features-list">
+    <li>🌍 Открывайте для себя места поблизости и по всему миру — смотровые площадки, достопримечательности, уникальные места</li>
+    <li>📸 Советы по фотосъёмке — узнайте лучшее время, ракурс и на что обратить внимание</li>
+    <li>🗺️ Интерактивная карта и навигация по маршруту — легко планируйте свои поездки</li>
+    <li>⭐ Коллекции и избранное — организуйте и сохраняйте места, которые обязательно нужно посетить</li>
+    <li>🌐 Многоязычная поддержка — пользуйтесь GoVista на предпочитаемом вами языке</li>
+    <li>👤 Профиль и отметки «Нравится» — отслеживайте понравившиеся советы по фото</li>
+    <li>💳 Поддержите проект — банковской картой, Revolut, PayPal или Boosty</li>
+  </ul>
+</section>
+
+<section>
+  <h2 id="advantages-title">Почему это удобно</h2>
+  <ul id="advantages-list">
+    <li>⏱️ Экономьте время на подготовку — вся важная информация в одном месте</li>
+    <li>👀 Смотрите больше — точные советы и актуальная информация</li>
+    <li>✨ Простой и удобный интерфейс — быстрый, понятный и без отвлекающих факторов</li>
+  </ul>
+</section>
+
+<section>
+  <h2 id="screenshots-title">Скриншоты приложения</h2>
+  <div class="screenshots">
+    <img src="screenshot1.png" alt="GoVista Screenshot 1">
+    <img src="screenshot2.png" alt="GoVista Screenshot 2">
+    <img src="screenshot3.png" alt="GoVista Screenshot 3">
+  </div>
+</section>
+
+<footer id="footer">© 2025 GoVista. Все права защищены.</footer>
+
+<script>
+const texts = {
+  ru: {
+    title: "GoVista",
+    description: "GoVista — ваш умный путеводитель, который поможет вам открыть для себя удивительные места и спланировать незабываемые маршруты. Исследуйте близлежащие достопримечательности или направления по всему миру, получайте точные советы по фотосъемке, сохраняйте избранное и наслаждайтесь удобным и интуитивно понятным интерфейсом карты.",
+    features: [
+      "🌍 Открывайте для себя места поблизости и по всему миру — смотровые площадки, достопримечательности, уникальные места",
+      "📸 Советы по фотосъёмке — узнайте лучшее время, ракурс и на что обратить внимание",
+      "🗺️ Интерактивная карта и навигация по маршруту — легко планируйте свои поездки",
+      "⭐ Коллекции и избранное — организуйте и сохраняйте места, которые обязательно нужно посетить",
+      "🌐 Многоязычная поддержка — пользуйтесь GoVista на предпочитаемом вами языке",
+      "👤 Профиль и отметки «Нравится» — отслеживайте понравившиеся советы по фото",
+      "💳 Поддержите проект — банковской картой, Revolut, PayPal или Boosty"
+    ],
+    advantages: [
+      "⏱️ Экономьте время на подготовку — вся важная информация в одном месте",
+      "👀 Смотрите больше — точные советы и актуальная информация",
+      "✨ Простой и удобный интерфейс — быстрый, понятный и без отвлекающих факторов"
+    ],
+    footer: "© 2025 GoVista. Все права защищены."
+  },
+  en: {
+    title: "GoVista",
+    description: "GoVista — your smart travel guide to discover amazing places and plan unforgettable routes. Explore nearby attractions or destinations around the world, get precise photography tips, save favorites, and enjoy an intuitive and convenient map interface.",
+    features: [
+      "🌍 Discover nearby and worldwide places — viewpoints, attractions, unique spots",
+      "📸 Photography tips — learn the best time, angle, and points of interest",
+      "🗺️ Interactive map and route navigation — easily plan your trips",
+      "⭐ Collections and favorites — organize and save must-visit places",
+      "🌐 Multilingual support — use GoVista in your preferred language",
+      "👤 Profile and Likes — track your favorite photography tips",
+      "💳 Support the project — via bank card, Revolut, PayPal or Boosty"
+    ],
+    advantages: [
+      "⏱️ Save time — all important information in one place",
+      "👀 See more — precise tips and up-to-date info",
+      "✨ Simple and convenient interface — fast, clear, distraction-free"
+    ],
+    footer: "© 2025 GoVista. All rights reserved."
+  }
+};
+
+function updateLanguage(lang) {
+  document.getElementById("title").innerText = texts[lang].title;
+  document.getElementById("description").innerText = texts[lang].description;
+  document.getElementById("footer").innerText = texts[lang].footer;
+
+  const featuresList = document.getElementById("features-list");
+  featuresList.innerHTML = "";
+  texts[lang].features.forEach(f => {
+    const li = document.createElement("li");
+    li.textContent = f;
+    featuresList.appendChild(li);
+  });
+
+  const advantagesList = document.getElementById("advantages-list");
+  advantagesList.innerHTML = "";
+  texts[lang].advantages.forEach(a => {
+    const li = document.createElement("li");
+    li.textContent = a;
+    advantagesList.appendChild(li);
+  });
+}
+
+document.getElementById("language-select").addEventListener("change", e => {
+  updateLanguage(e.target.value);
+});
+
+// по умолчанию русский
+updateLanguage("ru");
+</script>
+
+</body>
+</html>
 
