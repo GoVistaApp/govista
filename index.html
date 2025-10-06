@@ -56,10 +56,167 @@
   ul {list-style:none; padding:0;}
   li {background:white; margin:10px 0; padding:15px 20px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.1); font-size:1.1rem;}
   
-  /* Скриншоты - 5 в ряд */
-  .screenshots {display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin-top: 20px;}
-  .screenshots img {width: calc(20% - 15px); max-width: 160px; border-radius: 12px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); transition: transform 0.3s;}
-  .screenshots img:hover {transform: scale(1.05);}
+  /* Стили для галереи */
+.screenshots {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.screenshots img {
+    width: calc(20% - 15px);
+    max-width: 160px;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+    cursor: pointer;
+}
+
+.screenshots img:hover {
+    transform: scale(1.05);
+}
+
+/* Модальное окно галереи */
+.gallery-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.9);
+    animation: fadeIn 0.3s;
+}
+
+.gallery-content {
+    position: relative;
+    margin: auto;
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gallery-slide {
+    display: none;
+    text-align: center;
+    max-width: 90%;
+    max-height: 90%;
+}
+
+.gallery-slide.active {
+    display: block;
+}
+
+.gallery-slide img {
+    max-width: 100%;
+    max-height: 90vh;
+    border-radius: 8px;
+    object-fit: contain;
+}
+
+/* Кнопки навигации */
+.gallery-prev, .gallery-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255,255,255,0.2);
+    border: none;
+    color: white;
+    font-size: 24px;
+    padding: 15px;
+    cursor: pointer;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s;
+}
+
+.gallery-prev:hover, .gallery-next:hover {
+    background: rgba(255,255,255,0.4);
+}
+
+.gallery-prev {
+    left: 20px;
+}
+
+.gallery-next {
+    right: 20px;
+}
+
+/* Кнопка закрытия */
+.gallery-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: white;
+    font-size: 35px;
+    font-weight: bold;
+    cursor: pointer;
+    background: none;
+    border: none;
+    z-index: 1001;
+}
+
+.gallery-close:hover {
+    color: #ccc;
+}
+
+/* Счетчик изображений */
+.gallery-counter {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 16px;
+    background: rgba(0,0,0,0.5);
+    padding: 5px 15px;
+    border-radius: 20px;
+}
+
+/* Анимация */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Адаптивность для мобильных */
+@media (max-width: 768px) {
+    .screenshots img {
+        width: calc(50% - 15px);
+        max-width: none;
+    }
+    
+    .gallery-prev, .gallery-next {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+        padding: 10px;
+    }
+    
+    .gallery-prev {
+        left: 10px;
+    }
+    
+    .gallery-next {
+        right: 10px;
+    }
+    
+    .gallery-close {
+        top: 10px;
+        right: 15px;
+        font-size: 30px;
+    }
+}
   
   /* Стили для будущих функций */
   .future-features {display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 30px;}
@@ -191,13 +348,42 @@
 <section>
   <h2 id="screenshots-title">Скриншоты приложения</h2>
   <div class="screenshots">
-    <img src="1.jpg" alt="GoVista Screenshot 1">
-    <img src="2.jpg" alt="GoVista Screenshot 2">
-    <img src="3.jpg" alt="GoVista Screenshot 3">
-    <img src="4.jpg" alt="GoVista Screenshot 4">
-    <img src="5.jpg" alt="GoVista Screenshot 5">
+    <img src="1.jpg" alt="GoVista Screenshot 1" onclick="openGallery(0)">
+    <img src="2.jpg" alt="GoVista Screenshot 2" onclick="openGallery(1)">
+    <img src="3.jpg" alt="GoVista Screenshot 3" onclick="openGallery(2)">
+    <img src="4.jpg" alt="GoVista Screenshot 4" onclick="openGallery(3)">
+    <img src="5.jpg" alt="GoVista Screenshot 5" onclick="openGallery(4)">
   </div>
 </section>
+
+<!-- Модальное окно галереи -->
+<div id="galleryModal" class="gallery-modal">
+  <button class="gallery-close" onclick="closeGallery()">&times;</button>
+  <div class="gallery-counter">
+    <span id="galleryCurrent">1</span> / <span id="galleryTotal">5</span>
+  </div>
+  <div class="gallery-content">
+    <button class="gallery-prev" onclick="changeSlide(-1)">&#10094;</button>
+    
+    <div class="gallery-slide active">
+      <img src="1.jpg" alt="GoVista Screenshot 1">
+    </div>
+    <div class="gallery-slide">
+      <img src="2.jpg" alt="GoVista Screenshot 2">
+    </div>
+    <div class="gallery-slide">
+      <img src="3.jpg" alt="GoVista Screenshot 3">
+    </div>
+    <div class="gallery-slide">
+      <img src="4.jpg" alt="GoVista Screenshot 4">
+    </div>
+    <div class="gallery-slide">
+      <img src="5.jpg" alt="GoVista Screenshot 5">
+    </div>
+    
+    <button class="gallery-next" onclick="changeSlide(1)">&#10095;</button>
+  </div>
+</div>
 
 <!-- Future Features Section -->
 <section id="future-features">
@@ -889,6 +1075,70 @@ document.getElementById("language-select").addEventListener("change", e => {
 
 // По умолчанию русский
 updateLanguage("ru");
+  
+  // ГАЛЕРЕЯ СКРИНШОТОВ - ДОБАВЬ ЭТОТ КОД В КОНЕЦ
+let currentSlide = 0;
+const totalSlides = 5;
+
+function openGallery(slideIndex) {
+    currentSlide = slideIndex;
+    const modal = document.getElementById('galleryModal');
+    modal.style.display = 'block';
+    showSlide(currentSlide);
+    document.body.style.overflow = 'hidden';
+    
+    document.addEventListener('keydown', handleKeyPress);
+}
+
+function closeGallery() {
+    const modal = document.getElementById('galleryModal');
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+    document.removeEventListener('keydown', handleKeyPress);
+}
+
+function changeSlide(direction) {
+    currentSlide += direction;
+    
+    if (currentSlide >= totalSlides) {
+        currentSlide = 0;
+    } else if (currentSlide < 0) {
+        currentSlide = totalSlides - 1;
+    }
+    
+    showSlide(currentSlide);
+}
+
+function showSlide(n) {
+    const slides = document.getElementsByClassName('gallery-slide');
+    const currentElement = document.getElementById('galleryCurrent');
+    const totalElement = document.getElementById('galleryTotal');
+    
+    for (let i = 0; i < slides.length; i++) {
+        slides[i].classList.remove('active');
+    }
+    
+    slides[n].classList.add('active');
+    currentElement.textContent = n + 1;
+    totalElement.textContent = totalSlides;
+    currentSlide = n;
+}
+
+function handleKeyPress(e) {
+    if (e.key === 'Escape') {
+        closeGallery();
+    } else if (e.key === 'ArrowLeft') {
+        changeSlide(-1);
+    } else if (e.key === 'ArrowRight') {
+        changeSlide(1);
+    }
+}
+
+document.getElementById('galleryModal').addEventListener('click', function(e) {
+    if (e.target === this) {
+        closeGallery();
+    }
+});
 </script>
 
 </body>
