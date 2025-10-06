@@ -18,17 +18,23 @@
 <style>
   body {font-family: sans-serif; margin:0; padding:0; background:#f9f9f9; text-align:center;}
   header {background: linear-gradient(135deg,#4f46e5,#3b82f6); color:white; padding:60px 20px; position: relative;}
-  .logo-title {display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 10px;}
-  .logo {width: 60px; height: 60px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: bold; color: #3b82f6;}
+  
+  /* Логотип в 5 раз больше */
+  .logo-container {display: flex; flex-direction: column; align-items: center; margin-bottom: 10px;}
+  .logo {width: 300px; height: 300px; border-radius: 50%; object-fit: cover; margin-bottom: 20px;}
   header h1 {font-size:2.5rem; margin-bottom:10px;}
   header p {font-size:1.2rem; margin-bottom:30px; max-width:800px; margin-left:auto; margin-right:auto;}
+  
+  /* Ссылки на сторы и соцсети */
   .store-links {display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;}
   .store-links img {height:60px; transition: transform 0.3s;}
   .store-links img:hover {transform: scale(1.05);}
+  
+  /* Иконки соцсетей в стиле сторах */
   .social-links-header {display: flex; gap: 15px; margin-left: 20px;}
-  .social-links-header a {display: flex; align-items: center; justify-content: center; width: 50px; height: 50px; background: rgba(255,255,255,0.2); border-radius: 50%; transition: all 0.3s; text-decoration: none;}
-  .social-links-header a:hover {background: rgba(255,255,255,0.3); transform: scale(1.1);}
-  .social-icon {font-size: 24px;}
+  .social-links-header a {display: flex; align-items: center; justify-content: center; height: 60px; padding: 0 20px; background: rgba(255,255,255,0.2); border-radius: 12px; transition: all 0.3s; text-decoration: none; color: white; font-weight: bold;}
+  .social-links-header a:hover {background: rgba(255,255,255,0.3); transform: scale(1.05);}
+  .social-icon {width: 24px; height: 24px; margin-right: 8px;}
   
   /* Улучшенный селектор языка */
   select#language-select {
@@ -49,8 +55,10 @@
   section h2 {text-align:center; margin-bottom:20px;}
   ul {list-style:none; padding:0;}
   li {background:white; margin:10px 0; padding:15px 20px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.1); font-size:1.1rem;}
-  .screenshots {display:flex; flex-wrap:wrap; justify-content:center; gap:15px; margin-top:20px;}
-  .screenshots img {width:200px; border-radius:12px; box-shadow:0 2px 6px rgba(0,0,0,0.1); transition: transform 0.3s;}
+  
+  /* Скриншоты - 5 в ряд */
+  .screenshots {display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin-top: 20px;}
+  .screenshots img {width: calc(20% - 15px); max-width: 160px; border-radius: 12px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); transition: transform 0.3s;}
   .screenshots img:hover {transform: scale(1.05);}
   
   /* Стили для будущих функций */
@@ -112,6 +120,14 @@
     background: #2563eb;
     transform: scale(1.1);
   }
+
+  /* Адаптивность для мобильных */
+  @media (max-width: 768px) {
+    .logo {width: 200px; height: 200px;}
+    .screenshots img {width: calc(50% - 15px); max-width: none;}
+    .social-links-header {margin-left: 0; margin-top: 15px;}
+    .store-links {flex-direction: column; gap: 15px;}
+  }
 </style>
 </head>
 <body>
@@ -123,8 +139,7 @@
 </select>
 
 <header>
-  <div class="logo-title">
-    <div class="logo-title">
+  <div class="logo-container">
     <img src="logo.jpg" alt="GoVista Logo" class="logo">
     <h1 id="title">GoVista</h1>
   </div>
@@ -136,10 +151,16 @@
     <a href="#"><img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="App Store"></a>
     <div class="social-links-header">
       <a href="https://t.me/GoVistaApp" target="_blank" title="Telegram">
-        <span class="social-icon">📱</span>
+        <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.14.14-.26.26-.535.26l.213-3.05 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.64-.203-.658-.64.136-.954l11.566-4.458c.538-.196 1.006.128.832.941z"/>
+        </svg>
+        Telegram
       </a>
       <a href="https://www.instagram.com/govista_/?utm_source=ig_web_button_share_sheet" target="_blank" title="Instagram">
-        <span class="social-icon">📸</span>
+        <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+        </svg>
+        Instagram
       </a>
     </div>
   </div>
@@ -170,48 +191,19 @@
 <section>
   <h2 id="screenshots-title">Скриншоты приложения</h2>
   <div class="screenshots">
-    <img src="1.jpg" alt="1.jpg">
-    <img src="2.jpg" alt="2.jpg">
-    <img src="3.jpg" alt="3.jpg">
-    <img src="4.jpg" alt="4.jpg">
-    <img src="5.jpg" alt="5.jpg">
+    <img src="1.jpg" alt="GoVista Screenshot 1">
+    <img src="2.jpg" alt="GoVista Screenshot 2">
+    <img src="3.jpg" alt="GoVista Screenshot 3">
+    <img src="4.jpg" alt="GoVista Screenshot 4">
+    <img src="5.jpg" alt="GoVista Screenshot 5">
   </div>
 </section>
 
 <!-- Future Features Section -->
 <section id="future-features">
   <h2 id="future-title">Что планируем добавить</h2>
-  <div class="future-features">
-    <div class="feature-card">
-      <div class="feature-icon">🗺️</div>
-      <h3>Оффлайн карты</h3>
-      <p>Используйте карты без подключения к интернету в любой точке мира</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">🎯</div>
-      <h3>Скретч карта</h3>
-      <p>Визуализируйте страны и места, которые вы уже посетили</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">💎</div>
-      <h3>Эксклюзивные места</h3>
-      <p>Фильтр по уникальным и малоизвестным локациям</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">🎭</div>
-      <h3>Стили путешествий</h3>
-      <p>Персонализированные маршруты под ваш стиль отдыха</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">🛣️</div>
-      <h3>Личные маршруты</h3>
-      <p>Создавайте и сохраняйте собственные маршруты путешествий</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">✨</div>
-      <h3>И многое другое</h3>
-      <p>Постоянно работаем над новыми функциями для вашего комфорта</p>
-    </div>
+  <div class="future-features" id="future-features-list">
+    <!-- Контент будет заполнен через JavaScript -->
   </div>
 </section>
 
@@ -422,6 +414,14 @@ const texts = {
     ],
     screenshotsTitle: "Скриншоты приложения",
     futureTitle: "Что планируем добавить",
+    futureFeatures: [
+      {icon: "🗺️", title: "Оффлайн карты", description: "Используйте карты без подключения к интернету в любой точке мира"},
+      {icon: "🎯", title: "Скретч карта", description: "Визуализируйте страны и места, которые вы уже посетили"},
+      {icon: "💎", title: "Эксклюзивные места", description: "Фильтр по уникальным и малоизвестным локациям"},
+      {icon: "🎭", title: "Стили путешествий", description: "Персонализированные маршруты под ваш стиль отдыха"},
+      {icon: "🛣️", title: "Личные маршруты", description: "Создавайте и сохраняйте собственные маршруты путешествий"},
+      {icon: "✨", title: "И многое другое", description: "Постоянно работаем над новыми функциями для вашего комфорта"}
+    ],
     legalTitle: "Юридическая информация",
     dataDeletionTitle: "🗑️ Запрос на удаление данных",
     accountDeletionTitle: "👤 Запрос на удаление аккаунта",
@@ -617,6 +617,14 @@ const texts = {
     ],
     screenshotsTitle: "App Screenshots",
     futureTitle: "What we plan to add",
+    futureFeatures: [
+      {icon: "🗺️", title: "Offline Maps", description: "Use maps without internet connection anywhere in the world"},
+      {icon: "🎯", title: "Scratch Map", description: "Visualize countries and places you've already visited"},
+      {icon: "💎", title: "Exclusive Places", description: "Filter for unique and lesser-known locations"},
+      {icon: "🎭", title: "Travel Styles", description: "Personalized routes tailored to your travel style"},
+      {icon: "🛣️", title: "Personal Routes", description: "Create and save your own travel routes"},
+      {icon: "✨", title: "And Much More", description: "Constantly working on new features for your comfort"}
+    ],
     legalTitle: "Legal Information",
     dataDeletionTitle: "🗑️ Data Deletion Request",
     accountDeletionTitle: "👤 Account Deletion Request",
@@ -819,6 +827,20 @@ function updateLanguage(lang) {
     const li = document.createElement("li");
     li.textContent = a;
     advantagesList.appendChild(li);
+  });
+
+  // Update future features
+  const futureFeaturesList = document.getElementById("future-features-list");
+  futureFeaturesList.innerHTML = "";
+  texts[lang].futureFeatures.forEach(feature => {
+    const card = document.createElement("div");
+    card.className = "feature-card";
+    card.innerHTML = `
+      <div class="feature-icon">${feature.icon}</div>
+      <h3>${feature.title}</h3>
+      <p>${feature.description}</p>
+    `;
+    futureFeaturesList.appendChild(card);
   });
 
   // Update tab buttons
